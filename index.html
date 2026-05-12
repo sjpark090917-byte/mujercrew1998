@@ -1,40 +1,171 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-  <title>mujer's Site</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>무저크루 공식 사이트</title>
+
   <style>
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      background: linear-gradient(135deg, #111, #2b2b2b);
+      color: white;
       text-align: center;
-      padding: 60px;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 50px 20px 20px;
     }
 
     h1 {
-      color: #222;
-      font-size: 40px;
+      font-size: 48px;
+      margin-bottom: 10px;
     }
 
-    p {
-      font-size: 20px;
-      color: #555;
+    .subtitle {
+      color: #ccc;
+      font-size: 18px;
     }
 
-    .box {
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
+    .button-container {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    button {
+      padding: 15px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      background-color: #ffffff;
+      color: #111;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+      background-color: #ffcc00;
+    }
+
+    .card {
+      margin: 45px auto;
+      background-color: white;
+      color: #111;
       max-width: 600px;
-      margin: auto;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(255,255,255,0.15);
+      display: none;
+    }
+
+    .card h2 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .tag {
+      display: inline-block;
+      background-color: #111;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 20px;
+      margin: 6px;
+      font-size: 15px;
+    }
+
+    .description {
+      margin-top: 20px;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    footer {
+      margin-top: 50px;
+      padding-bottom: 30px;
+      color: #aaa;
     }
   </style>
 </head>
+
 <body>
-  <div class="box">
-    <h1>Welcome to My Site</h1>
-    <p>무저크루 회원들이 염병을 떠는 사이트입니다.</p>
-    <p>Made by Sungjun</p>
+
+  <header>
+    <h1>무저크루</h1>
+    <p class="subtitle">공식 인물 소개 사이트</p>
+  </header>
+
+  <div class="button-container">
+    <button onclick="showMember('odonghyop')">odonghyop</button>
+    <button onclick="showMember('mujer')">mujer</button>
+    <button onclick="showMember('chiggahwan')">chiggahwan</button>
+    <button onclick="showMember('kigpark')">kigpark</button>
   </div>
+
+  <div id="memberCard" class="card">
+    <h2 id="name"></h2>
+
+    <div id="tags"></div>
+
+    <p id="description" class="description"></p>
+  </div>
+
+  <footer>
+    <p>© 2026 Mujer Crew</p>
+  </footer>
+
+  <script>
+    const members = {
+      odonghyop: {
+        name: "odonghyop",
+        tags: ["닭갈비", "유가네"],
+        description: "odonghyop은 무저크루의 닭갈비 담당이다. 유가네와 함께 설명되는 인물로, 크루 내에서 강한 음식 정체성을 가진 캐릭터다."
+      },
+
+      mujer: {
+        name: "mujer",
+        tags: ["fimo", "kakaotalk 통화"],
+        description: "mujer는 무저크루의 중심 인물 중 하나다. fimo와 카카오톡 통화로 대표되는 독특한 존재감을 가진 캐릭터다."
+      },
+
+      chiggahwan: {
+        name: "chiggahwan",
+        tags: ["폐급", "염병"],
+        description: "chiggahwan은 무저크루 안에서 혼돈과 예능감을 담당하는 인물이다. 폐급과 염병이라는 키워드로 설명되는 강렬한 캐릭터다."
+      },
+
+      kigpark: {
+        name: "kigpark",
+        tags: ["렴병", "codio"],
+        description: "kigpark는 codio와 함께 기억되는 인물이다. 렴병이라는 키워드와 함께 무저크루의 특이한 분위기를 만드는 캐릭터다."
+      }
+    };
+
+    function showMember(memberKey) {
+      const member = members[memberKey];
+
+      document.getElementById("name").textContent = member.name;
+
+      const tagsDiv = document.getElementById("tags");
+      tagsDiv.innerHTML = "";
+
+      member.tags.forEach(tag => {
+        const span = document.createElement("span");
+        span.className = "tag";
+        span.textContent = tag;
+        tagsDiv.appendChild(span);
+      });
+
+      document.getElementById("description").textContent = member.description;
+
+      document.getElementById("memberCard").style.display = "block";
+    }
+  </script>
+
 </body>
 </html>
